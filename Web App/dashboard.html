@@ -1,0 +1,103 @@
+<html ng-app="Echo">
+
+	<head>
+		<title>Echo</title>
+		<script src="js/angular.min.js"></script>
+		<script src="js/jquery-1.11.2.min.js"></script>
+
+		<link href="css/global.css" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
+    	<link href="css/bootstrap.min.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div class="container-fluid" ng-controller="SessionPageController">
+
+			<div id="masternav" class="navbar-fixed-top navbar" >
+				<a class="navbar-brand" id="mbutton" href="#">Echo</a>
+					<ul class="nav navbar-nav pull-right">
+                		<li class="mitem"><a href="#">Home</a></li>
+                		<li class="mitem"><a href="#about">About</a></li>
+                		<li class="mitem"><a href="#contact">Contact</a></li>
+             		</ul>
+			</div>
+
+			<br/>
+			<br/>
+			<br/>
+
+			<div class="row">
+				<div class="span12">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#view" data-href="#view" data-toggle="tab">View</a></li>
+						<li class=""><a href="#edit" data-href="#edit" data-toggle="tab">Edit</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<br/>
+
+			<div class="tab-content">
+				<div id="view" class="tab-pane active">
+					<div class="row">
+						<div class="col-xs-2">
+							<p>Session Name:</p>
+						</div>
+						<div id="display" class="col-xs-8">
+							<h3>Question:</h3>
+							<br/>
+							<div id="answerOptions">
+								<h3>Options:</h3>
+
+							</div>
+						</div>
+						<div class="col-xs-2">
+							<a href="#" class="btn btn-info btn-lg">
+          						<span class="glyphicon glyphicon-arrow-up"></span> Up
+        					</a>
+        					<a href="#" class="btn btn-info btn-lg">
+          						<span class="glyphicon glyphicon-arrow-down"></span> Down
+        					</a>
+						</div>
+					</div>
+				</div>
+				<div id="edit" class="tab-pane">
+					<div class="row">
+						<div class="col-xs-4">
+							<p><input type="text" placeholder="Question" ng-model="nm" ></input></p>
+							<p><input type="text" placeholder="Option 1" ng-model="nm" ></input></p>
+							<p><input type="text" placeholder="Option 2" ng-model="nm" ></input></p>
+							<a href="#" class="btn btn-info btn-lg">
+          						<span class="glyphicon glyphicon-plus"></span> Option 
+       						</a>
+						</div>
+						<div class="col-xs-4">
+							<a href="#" class="btn btn-info btn-lg">New question</a>
+						</div>
+						<div class="col-xs-4">
+							<a href="#" class="btn btn-info btn-lg">Save question set for this session</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+
+
+
+
+
+
+
+		<!-- Bootstrap core JavaScript
+    	================================================== -->
+    	<!-- Placed at the end of the document so the pages load faster -->
+    	<script src="js/bootstrap.min.js"></script>
+    	<script src="js/docs.min.js"></script>
+    	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    	<script src="js/ie10-viewport-bug-workaround.js"></script>
+	</body>
+
+
+</html>
