@@ -16,8 +16,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     Button connect;
     EditText sess;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +29,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     public void onBackPressed()
     {
-      backButtonHandler();
-      return;
+        backButtonHandler();
+        return;
     }
 
     public void backButtonHandler()
