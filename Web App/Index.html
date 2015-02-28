@@ -1,9 +1,11 @@
-<html ng-app="name">
+<html ng-app="Echo">
 
 	<head>
-		<title>name</title>
+		<title>Echo</title>
 		<script src="js/angular.min.js"></script>
 		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/MasterController.js"></script>
+
 
 		<link href="css/global.css" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
@@ -11,6 +13,24 @@
 	</head>
 
 	<body>
+
+		<div id="homeContainer" class="container" ng-controller="LandingPageController">
+			<h1>Echo</h1>
+			<br/>
+
+			<h2>Start a Session</h2>
+
+			<br/>
+			<p><input type="text" placeholder="Enter Session Name" ng-model="sessionName" ></input></p>
+			<p><button id="startButton" ng-click="startSession()">Start</button></p>
+		</div>
+		
+
+
+
+
+
+
 
 		<!-- Bootstrap core JavaScript
     	================================================== -->
