@@ -1,64 +1,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="50mm"
-    android:layout_height="match_parent"
-    android:paddingLeft="15mm"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="50mm"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
->
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.nissanoz.phone_por.MainActivity">
 
-
-    <TextView
-        android:id="@+id/Session"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        />
 
     <Button
-        android:id="@+id/bConnect"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Session"
-        android:text="Connect"
-        />
-
-    <TextView
-        android:id="@+id/Exit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bConnect"
-        />
-
-    <Button
-        android:id="@+id/bExit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Exit"
-        android:gravity="center"
-        android:text="Exit"
-        />
-
-    <TextView
-        android:id="@+id/AU"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bExit"
-        />
-
-    <Button
-        android:id="@+id/bGo"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/AU"
-        android:text="About Us"
-        />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        />
+        android:text="Connect"
+        android:id="@+id/buttonconnect"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
+    <EditText
+        android:hint="Enter Session Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextsess"
+        android:layout_above="@+id/buttonconnect"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
