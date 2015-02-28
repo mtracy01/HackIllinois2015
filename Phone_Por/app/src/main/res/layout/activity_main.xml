@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Session"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Connect to Session"
+        />
+
+    <Button
+        android:id="@+id/bConnect"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Session"
+        android:text="Connect"
+        />
+
+    <TextView
+        android:id="@+id/Exit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bConnect"
+        android:text="Leave Application"
+        />
+
+    <Button
+        android:id="@+id/bExit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Exit"
+        android:gravity="center"
+        android:text="Exit"
+        />
+
+    <TextView
+        android:id="@+id/AU"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bExit"
+        android:text="About Us"
+        />
+
+    <Button
+        android:id="@+id/bGo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AU"
+        android:text="Go"
+        />
+
+</RelativeLayout>
