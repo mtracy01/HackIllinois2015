@@ -9,14 +9,14 @@
 
 
 		<script>
-			var socket = io.connect('http://6d6ba094.ngrok.com');
-    		// on every message recived we print the new datas inside the #container div
-    		socket.on('notification', function (data) {
-        		// convert the json string into a valid javascript object
-        		var _data = JSON.parse(data);
-        		console.log(_data);
-        		$('#ansio').html(_data.answer);
-    		});
+			// var socket = io.connect('http://6d6ba094.ngrok.com');
+   //  		// on every message recived we print the new datas inside the #container div
+   //  		socket.on('notification', function (data) {
+   //      		// convert the json string into a valid javascript object
+   //      		var _data = JSON.parse(data);
+   //      		console.log(_data);
+   //      		$('#ansio').html(_data.answer);
+   //  		});
 		</script>
 
 		<link href="css/global.css" rel="stylesheet">
@@ -71,6 +71,7 @@
 							<p><a href="#" class="btn btn-info btn-lg" ng-click="decrementQ()">Prev</a>
         					<a href="#" class="btn btn-info btn-lg" ng-click="incrementQ()">Next</a></p>
         					<p><a href="#" class="btn btn-info btn-lg" ng-click="askQ()">Ask Question</a></p>
+        					<p><a href="#" class="btn btn-info btn-lg" ng-click="stopA()">Stop Answers</a></p>
         					<p>Session Name: {{sessName}}</p>
         					<p id="ansio">Answer: </p>
 						</div>
