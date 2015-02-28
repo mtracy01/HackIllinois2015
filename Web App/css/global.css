@@ -6,6 +6,7 @@
 
 #display {
 	text-align: center;
+	visibility: hidden;
 }
 
 #edit {

@@ -64,6 +64,11 @@ app.controller("SessionPageController", function($scope, sharedVars, $http) {
 	$scope.startDisplaySession = function() {
 		$scope.qdindex = 0;
 		$scope.qToDisplay = $scope.questionVals[$scope.qdindex];
+		$("#display").css("visibility","visible");
+	}
+
+	$scope.stopDisplaySession = function() {
+		$("#display").css("visibility","hidden");
 	}
 
 	$scope.incrementQ = function() {
@@ -76,5 +81,20 @@ app.controller("SessionPageController", function($scope, sharedVars, $http) {
 		if ($scope.qdindex > 0)
 			$scope.qdindex--;
 		$scope.qToDisplay = $scope.questionVals[$scope.qdindex];
+	}
+
+	$scope.askQ = function() {
+		var urlToSend = "";
+		var dataObj = {
+          "session": $scope.sessName,
+          "question": $scope.questionVals[$scope.qdindex],
+          "options": $scope.ansoptionVals[$scope.qdindex].length,
+        };
+
+        console.log(dataObj);
+        $.post(urlToSend, dataObj)
+         .done(function( data ) {
+            console.log(data);
+          });
 	}
 });
