@@ -4,6 +4,7 @@
 		<title>Echo</title>
 		<script src="js/angular.min.js"></script>
 		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/MasterController.js"></script>
 
 		<link href="css/global.css" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
@@ -41,41 +42,45 @@
 				<div id="view" class="tab-pane active">
 					<div class="row">
 						<div class="col-xs-2">
-							<p>Session Name:</p>
+							<p>Session Name: {{sessName}}</p>
+							<p><a href="#" class="btn btn-info btn-lg" ng-click="startDisplaySession()">Start Session</a></p>
 						</div>
 						<div id="display" class="col-xs-8">
-							<h3>Question:</h3>
+							<h3>Question: {{ qToDisplay }}</h3>
 							<br/>
 							<div id="answerOptions">
 								<h3>Options:</h3>
-
+								<p ng-repeat="x in ansoptionVals[qdindex] track by $index">{{ x }}</p>
 							</div>
 						</div>
 						<div class="col-xs-2">
-							<a href="#" class="btn btn-info btn-lg">
-          						<span class="glyphicon glyphicon-arrow-up"></span> Up
-        					</a>
-        					<a href="#" class="btn btn-info btn-lg">
-          						<span class="glyphicon glyphicon-arrow-down"></span> Down
-        					</a>
+							<a href="#" class="btn btn-info btn-lg" ng-click="decrementQ()">Prev</a>
+        					<a href="#" class="btn btn-info btn-lg" ng-click="incrementQ()">Next</a>
 						</div>
 					</div>
 				</div>
 				<div id="edit" class="tab-pane">
 					<div class="row">
 						<div class="col-xs-4">
-							<p><input type="text" placeholder="Question" ng-model="nm" ></input></p>
-							<p><input type="text" placeholder="Option 1" ng-model="nm" ></input></p>
-							<p><input type="text" placeholder="Option 2" ng-model="nm" ></input></p>
-							<a href="#" class="btn btn-info btn-lg">
-          						<span class="glyphicon glyphicon-plus"></span> Option 
-       						</a>
+							<p>Question: {{qToEdit}}</p>
+							<p ><input type="text" placeholder="Option" ng-model="optionValue" ></input>
+								<a href="#" class="btn btn-info btn-lg" ng-click="addOption()">+ Option</a>
+							</p>
+							<p ng-repeat="x in ansoptionVals[qindex] track by $index">{{ x }}</p>
 						</div>
 						<div class="col-xs-4">
-							<a href="#" class="btn btn-info btn-lg">New question</a>
+							<p><input type="text" placeholder="Question" ng-model="questionValue" ></input>
+								<a href="#" class="btn btn-info btn-lg" ng-click="addQuestion()">+ Question</a>
+							</p>
+							<p ng-repeat="x in questionVals track by $index" >
+								{{ x }}
+								<a href="#" class="btn btn-info btn-lg" ng-click="showOptions(x)">Select</a>
+							</p>
 						</div>
 						<div class="col-xs-4">
-							<a href="#" class="btn btn-info btn-lg">Save question set for this session</a>
+							<p><input type="text" placeholder="Session Name" ng-model="sessName" ></input></p>
+							<p><a href="#" class="btn btn-info btn-lg">Save question set for this session</a></p>
+							<p><a href="#" class="btn btn-info btn-lg" ng-click="clearQuestions()">Clear question set for this session</a></p>
 						</div>
 					</div>
 				</div>
@@ -94,9 +99,6 @@
     	================================================== -->
     	<!-- Placed at the end of the document so the pages load faster -->
     	<script src="js/bootstrap.min.js"></script>
-    	<script src="js/docs.min.js"></script>
-    	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    	<script src="js/ie10-viewport-bug-workaround.js"></script>
 	</body>
 
 
