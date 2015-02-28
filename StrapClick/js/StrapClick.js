@@ -7,6 +7,10 @@ HackIllinois 2015 - 2-27-15
 
 var StrapKit = require('strapkit');
 
+//app id to allow strap tracking
+var app_id = "MSY5JXgCKJmZH44KC";
+
+
 function(data) {
 
     var menuItems = ['A', 'B', 'C']; //answer options. can be changed/more can be added
