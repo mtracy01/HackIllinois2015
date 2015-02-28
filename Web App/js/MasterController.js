@@ -28,6 +28,8 @@ app.controller("SessionPageController", function($scope, sharedVars, $http) {
 	$scope.qToEdit = "";
 	$scope.qToDisplay = "";
 
+	var intervalID = 0;
+
 
 	$scope.addQuestion = function() {
 		$scope.questionVals.push($scope.questionValue);
@@ -84,17 +86,26 @@ app.controller("SessionPageController", function($scope, sharedVars, $http) {
 	}
 
 	$scope.askQ = function() {
-		var urlToSend = "http://6d6ba094.ngrok.com";
-		var dataObj = {
-          "session": $scope.sessName,
-          "question": $scope.questionVals[$scope.qdindex],
-          "options": 5,
-        };
 
-        console.log(dataObj);
-        $.post(urlToSend, dataObj)
-         .done(function( data ) {
-            console.log(data);
-          });
+		intervalID = setInterval(function() {
+			console.log("Text");
+			var urlToSend = "http://6d6ba094.ngrok.com";
+			var dataObj = {
+				"requestType": "webApp",
+          		"session": $scope.sessName,
+          		"question": $scope.questionVals[$scope.qdindex],
+          		"options": 5,
+        	};
+
+        	console.log(dataObj);
+        	$.post(urlToSend, dataObj)
+         	.done(function( data ) {
+            console.log(data);});
+		}, 3000);
+	}
+
+
+	$scope.stopA = function() {
+		clearInterval(intervalID);
 	}
 });
