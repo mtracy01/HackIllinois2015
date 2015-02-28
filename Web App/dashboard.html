@@ -1,10 +1,23 @@
-<html ng-app="Echo">
+<html ng-app="strapClick">
 
 	<head>
-		<title>Echo</title>
-		<script src="js/angular.min.js"></script>
+		<title>strapClick</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
 		<script src="js/MasterController.js"></script>
+
+
+		<script>
+			var socket = io.connect('http://6d6ba094.ngrok.com');
+    		// on every message recived we print the new datas inside the #container div
+    		socket.on('notification', function (data) {
+        		// convert the json string into a valid javascript object
+        		var _data = JSON.parse(data);
+        		console.log(_data);
+        		$('#ansio').html(_data.answer);
+    		});
+		</script>
 
 		<link href="css/global.css" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
@@ -15,7 +28,7 @@
 		<div class="container-fluid" ng-controller="SessionPageController">
 
 			<div id="masternav" class="navbar-fixed-top navbar" >
-				<a class="navbar-brand" id="mbutton" href="#">Echo</a>
+				<a class="navbar-brand" id="mbutton" href="#">strapClick</a>
 					<ul class="nav navbar-nav pull-right">
                 		<li class="mitem"><a href="#">Home</a></li>
                 		<li class="mitem"><a href="#about">About</a></li>
@@ -59,6 +72,7 @@
         					<a href="#" class="btn btn-info btn-lg" ng-click="incrementQ()">Next</a></p>
         					<p><a href="#" class="btn btn-info btn-lg" ng-click="askQ()">Ask Question</a></p>
         					<p>Session Name: {{sessName}}</p>
+        					<p id="ansio">Answer: </p>
 						</div>
 					</div>
 				</div>
@@ -67,24 +81,24 @@
 						<div class="col-xs-4">
 							<p>Options:</p>
 							<p ><input type="text" placeholder="Option" ng-model="optionValue" ></input>
-								<a href="#" class="btn btn-info btn-lg" ng-click="addOption()">+ Option</a>
+								<a href="#" class="btn btn-info btn-sm edbtn" ng-click="addOption()">+ Option</a>
 							</p>
 							<p ng-repeat="x in ansoptionVals[qindex] track by $index">{{ x }}</p>
 						</div>
 						<div class="col-xs-4">
 							<p>Question: {{qToEdit}}</p>
 							<p><input type="text" placeholder="Question" ng-model="questionValue" ></input>
-								<a href="#" class="btn btn-info btn-lg" ng-click="addQuestion()">+ Question</a>
+								<a href="#" class="btn btn-info btn-sm edbtn" ng-click="addQuestion()">+ Question</a>
 							</p>
 							<p ng-repeat="x in questionVals track by $index" >
 								{{ x }}
-								<a href="#" class="btn btn-info btn-lg" ng-click="showOptions(x)">Select</a>
+								<a href="#" class="btn btn-info btn-sm edbtn" ng-click="showOptions(x)">Select</a>
 							</p>
 						</div>
 						<div class="col-xs-4">
 							<p><input type="text" placeholder="Session Name" ng-model="sessName" ></input></p>
-							<p><a href="#" class="btn btn-info btn-lg">Save question set for this session</a></p>
-							<p><a href="#" class="btn btn-info btn-lg" ng-click="clearQuestions()">Clear question set for this session</a></p>
+							<p><a href="#" class="btn btn-info btn-sm edbtn">Save question set for this session</a></p>
+							<p><a href="#" class="btn btn-info btn-sm edbtn" ng-click="clearQuestions()">Clear question set for this session</a></p>
 						</div>
 					</div>
 				</div>

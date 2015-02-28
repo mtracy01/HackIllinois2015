@@ -1,4 +1,4 @@
-var app = angular.module("Echo", []);
+var app = angular.module("strapClick", []);
 
 app.service('sharedVars', function () {
         var sessionName = 'Name';
@@ -84,11 +84,11 @@ app.controller("SessionPageController", function($scope, sharedVars, $http) {
 	}
 
 	$scope.askQ = function() {
-		var urlToSend = "";
+		var urlToSend = "http://6d6ba094.ngrok.com";
 		var dataObj = {
           "session": $scope.sessName,
           "question": $scope.questionVals[$scope.qdindex],
-          "options": $scope.ansoptionVals[$scope.qdindex].length,
+          "options": 5,
         };
 
         console.log(dataObj);
