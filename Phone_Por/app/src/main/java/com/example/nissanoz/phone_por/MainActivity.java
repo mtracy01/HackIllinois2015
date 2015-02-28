@@ -7,7 +7,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.content.Intent;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.view.LayoutInflater;
 
+import com.facebook.Session;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -15,7 +20,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Initialize()
+        Initialize();
     }
 
 
@@ -44,7 +49,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void Initialize()
     {
         TextView txt = (TextView) findViewById(R.id.Session);
-        TextView txt2 = (TextView) findViewByID(R.id.Exit);
+        TextView txt2 = (TextView) findViewById(R.id.Exit);
         TextView txt3 = (TextView) findViewById(R.id.AU);
         Button connect = (Button) findViewById(R.id.bConnect);
         Button leave = (Button) findViewById(R.id.bExit);
@@ -56,12 +61,31 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     public void onBackPressed()
     {
-
+      backButtonHandler();
+      return;
     }
 
     public void backButtonHandler()
     {
+        Builder alertDialog = new Builder(MainActivity.this);
+        LayoutInflater inflater = MainActivity.this.getLayoutInflater();
 
+        alertDialog.setTitle("Leaving?");
+        alertDialog.setView(inflater.inflate(R.layout.leave, null));
+
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        alertDialog.setNegativeButton("No",	new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alertDialog.show();
     }
 
     public void onClick(View v)
@@ -69,12 +93,27 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
      switch(v.getId())
      {
          case R.id.bConnect:
+             try {
+                 Class<?> ourClass = Class.forName(".Session");
+                 Intent ourIntent = new Intent(MainActivity.this, ourClass);
+                 startActivity(ourIntent);
+             } catch (ClassNotFoundException e) {
+                 e.printStackTrace();
+             }
              break;
 
          case R.id.bExit:
+             finish();
              break;
 
          case R.id.bGo:
+             try {
+                 Class<?> ourClass = Class.forName(".About");
+                 Intent ourIntent = new Intent(MainActivity.this, ourClass);
+                 startActivity(ourIntent);
+             } catch (ClassNotFoundException e) {
+                 e.printStackTrace();
+             }
              break;
      }
     }
