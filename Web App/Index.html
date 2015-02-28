@@ -1,34 +1,40 @@
-<html ng-app="Echo">
+<html ng-app="strapClick">
 
 	<head>
-		<title>Echo</title>
-		<script src="js/angular.min.js"></script>
+		<title>strapClick</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
 		<script src="js/MasterController.js"></script>
 
-
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/global.css" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
-    	<link href="css/bootstrap.min.css" rel="stylesheet">
+    	
 	</head>
 
 	<body>
 
-		<div id="homeContainer" class="container" ng-controller="LandingPageController">
-			<h1>Echo</h1>
+		<div id="homeContainer" class="container-fluid" ng-controller="LandingPageController">
+			<div id="masternav" class="navbar-fixed-top navbar" >
+				<a class="navbar-brand" id="mbutton" href="#">strapClick</a>
+					<ul class="nav navbar-nav pull-right">
+                		<li class="mitem"><a href="#">Home</a></li>
+                		<li class="mitem"><a href="#about">About</a></li>
+                		<li class="mitem"><a href="#contact">Contact</a></li>
+             		</ul>
+			</div>
+
+
+			<h1>Strap Once. Click Anywhere.</h1>
 			<br/>
 
-			<h2>Start a Session</h2>
+			<h2>Start A Session Now.</h2>
 
 			<br/>
-			<p><input type="text" placeholder="Enter Session Name" ng-model="sessionName" ></input></p>
-			<p><button id="startButton" ng-click="startSession()">Start</button></p>
+			<p><button id="startButton" class="btn btn-info btn-lg" ng-click="startSession()">Start</button></p>
 		</div>
 		
-
-
-
-
 
 
 
@@ -36,9 +42,6 @@
     	================================================== -->
     	<!-- Placed at the end of the document so the pages load faster -->
     	<script src="js/bootstrap.min.js"></script>
-    	<script src="js/docs.min.js"></script>
-    	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    	<script src="js/ie10-viewport-bug-workaround.js"></script>
 	</body>
 
 

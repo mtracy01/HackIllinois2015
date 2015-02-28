@@ -6,6 +6,7 @@
 
 #display {
 	text-align: center;
+	visibility: hidden;
 }
 
 #edit {
@@ -18,4 +19,9 @@
 
 #homeContainer {
 	text-align: center;
+	margin-top: 10%;
+}
+
+.edbtn {
+
 }
