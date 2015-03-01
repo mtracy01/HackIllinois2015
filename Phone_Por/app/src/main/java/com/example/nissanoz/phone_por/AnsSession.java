@@ -27,6 +27,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +44,7 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
     TextView display, ta, tb, tc, td, te;
     String Question;
     String Answers[];
+    ArrayList<TextView> myArr = new ArrayList<TextView>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -197,7 +199,16 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
                     for (int i = 0; i < answers.length(); i++)
                         Answers[i] = answers.getString(i);
                 }
+
+                for (int i = 0; i < Answers.length; i++)
+                {
+                    TextView tmp = myArr.get(i);
+                    tmp.setText(Answers[i]);
+                }
+
                 return true;
+
+
 
             } catch (ClientProtocolException e) {
 
