@@ -15,6 +15,16 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/tA"
+        android:layout_below="@+id/textViewStatus"
+        android:layout_toRightOf="@+id/buttona"
+        android:layout_alignBottom="@+id/buttona"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,6 +32,16 @@
         android:id="@+id/buttonb"
         android:layout_below="@+id/buttona"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/tB"
+        android:layout_below="@+id/textViewStatus"
+        android:layout_toRightOf="@+id/buttonb"
+        android:layout_alignBottom="@+id/buttonb"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -31,6 +51,16 @@
         android:layout_below="@+id/buttonb"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/tC"
+        android:layout_below="@+id/textViewStatus"
+        android:layout_toRightOf="@+id/buttonc"
+        android:layout_alignBottom="@+id/buttonc"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,6 +69,16 @@
         android:layout_below="@+id/buttonc"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/tD"
+        android:layout_below="@+id/textViewStatus"
+        android:layout_toRightOf="@+id/buttond"
+        android:layout_alignBottom="@+id/buttond"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,6 +86,15 @@
         android:id="@+id/buttone"
         android:layout_below="@+id/buttond"
         android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/tE"
+        android:layout_below="@+id/textViewStatus"
+        android:layout_toRightOf="@+id/buttone"
+        android:layout_alignBottom="@+id/buttone"/>
 
     <TextView
         android:layout_width="wrap_content"

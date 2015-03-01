@@ -6,13 +6,18 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -20,6 +25,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,19 +36,23 @@ import java.util.Map;
  */
 public class AnsSession extends ActionBarActivity implements View.OnClickListener {
 
-
     int buttonPressed = 0;
     String session = "";
     Button a ,b, c, d, e;
-    TextView display;
+    EditText ea, eb, ec, ed, ee;
+    TextView display, ta, tb, tc, td, te;
+    String Question;
+    String Answers[];
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ans_session);
-
-
         display = (TextView) findViewById(R.id.textViewStatus);
-
+        ta = (TextView) findViewById(R.id.tA);
+        tb = (TextView) findViewById(R.id.tB);
+        tc = (TextView) findViewById(R.id.tC);
+        td = (TextView) findViewById(R.id.tD);
+        te = (TextView) findViewById(R.id.tE);
         a = (Button) findViewById(R.id.buttona);
         b = (Button) findViewById(R.id.buttonb);
         c = (Button) findViewById(R.id.buttonc);
@@ -93,6 +104,9 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
             values.put(new String("session"), session);
 
             switch (buttonPressed) {
+                case 0:
+                    makeGetRequest();
+                    break;
                 case 1:
                     values.put(new String("answer"), "A");
                     break;
@@ -153,10 +167,47 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             return null;
         }
 
+        private Object makeGetRequest()
+        {
+            HttpClient client = new DefaultHttpClient();
+            HttpGet get = new HttpGet("http://6d6ba094.ngrok.com");
+            String result = "";
+            try {
+                HttpResponse response = client.execute(get);
+                InputStream inputStream = response.getEntity().getContent();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
+                StringBuilder sb = new StringBuilder();
+
+                String line = null;
+                while ((line = reader.readLine()) != null)
+                {
+                    sb.append(line + "\n");
+                }
+
+                result = sb.toString();
+                JSONObject rson = new JSONObject(result);
+                String question = rson.optString("question");
+                JSONArray answers = rson.optJSONArray("answers");
+                if ((question != null) && (answers != null))
+                {
+                    Question = question;
+                    for (int i = 0; i < answers.length(); i++)
+                        Answers[i] = answers.getString(i);
+                }
+                return true;
+
+            } catch (ClientProtocolException e) {
+
+            } catch (IOException e) {
+
+            } catch (JSONException e) {
+
+            }
+            return false;
+        }
 
         @Override
         protected void onPostExecute(Object o) {
