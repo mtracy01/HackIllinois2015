@@ -1,6 +1,7 @@
 package com.example.nissanoz.phone_por;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -49,10 +51,11 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
     Button a ,b, c, d, e, fetch;
     TextView display;
     RadioButton toggle;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ans_session);
-        display = (TextView) findViewById(R.id.textViewStatus);
+        display = (TextView) findViewById(R.id.tView);
         toggle = (RadioButton) findViewById(R.id.bRadio);
         a = (Button) findViewById(R.id.buttona);
         b = (Button) findViewById(R.id.buttonb);
@@ -70,7 +73,6 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
         Intent intent = getIntent();
         session =  extras.getString("session");
         name = extras.getString("name");
-
     }
 
     @Override
@@ -230,6 +232,8 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
                                 e.setText(answers.getString(i));
                                 break;
                         }
+                    Toast.makeText(getApplicationContext(), "Your selection has been received", Toast.LENGTH_SHORT).show();
+
                 }
 
             } catch (IOException e) {
