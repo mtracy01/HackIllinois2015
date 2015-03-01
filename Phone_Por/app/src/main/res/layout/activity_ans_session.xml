@@ -6,24 +6,24 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.nissanoz.phone_por.AnsSession">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="@dimen/abc_text_size_medium_material"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="90dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="A"
         android:id="@+id/buttona"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/tA"
-        android:layout_below="@+id/textViewStatus"
-        android:layout_toRightOf="@+id/buttona"
-        android:layout_alignBottom="@+id/buttona"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -33,16 +33,6 @@
         android:layout_below="@+id/buttona"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/tB"
-        android:layout_below="@+id/textViewStatus"
-        android:layout_toRightOf="@+id/buttonb"
-        android:layout_alignBottom="@+id/buttonb"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,16 +40,6 @@
         android:id="@+id/buttonc"
         android:layout_below="@+id/buttonb"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/tC"
-        android:layout_below="@+id/textViewStatus"
-        android:layout_toRightOf="@+id/buttonc"
-        android:layout_alignBottom="@+id/buttonc"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -69,16 +49,6 @@
         android:layout_below="@+id/buttonc"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/tD"
-        android:layout_below="@+id/textViewStatus"
-        android:layout_toRightOf="@+id/buttond"
-        android:layout_alignBottom="@+id/buttond"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,24 +56,28 @@
         android:id="@+id/buttone"
         android:layout_below="@+id/buttond"
         android:layout_centerHorizontal="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/tE"
-        android:layout_below="@+id/textViewStatus"
-        android:layout_toRightOf="@+id/buttone"
-        android:layout_alignBottom="@+id/buttone"/>
 
-    <TextView
+
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Answer Question"
-        android:id="@+id/textViewStatus"
-        android:layout_above="@+id/buttona"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="49dp" />
+        android:id="@+id/bRadio"
+        android:layout_alignBottom="@+id/bFetch"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false"
+        android:text="Presentation" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fetch"
+        android:id="@+id/bFetch"
+        android:layout_below="@+id/buttone"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
 
 </RelativeLayout>

@@ -1,12 +1,18 @@
 package com.example.nissanoz.phone_por;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
@@ -38,34 +44,32 @@ import java.util.Map;
 public class AnsSession extends ActionBarActivity implements View.OnClickListener {
 
     int buttonPressed = 0;
-    String session = "";
-    Button a ,b, c, d, e;
-    EditText ea, eb, ec, ed, ee;
-    TextView display, ta, tb, tc, td, te;
-    String Question;
-    String Answers[];
-    ArrayList<TextView> myArr = new ArrayList<TextView>();
-
+    Bundle extras = getIntent().getExtras();
+    String session, name;
+    Button a ,b, c, d, e, fetch;
+    TextView display;
+    RadioButton toggle;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ans_session);
         display = (TextView) findViewById(R.id.textViewStatus);
-        ta = (TextView) findViewById(R.id.tA);
-        tb = (TextView) findViewById(R.id.tB);
-        tc = (TextView) findViewById(R.id.tC);
-        td = (TextView) findViewById(R.id.tD);
-        te = (TextView) findViewById(R.id.tE);
+        toggle = (RadioButton) findViewById(R.id.bRadio);
         a = (Button) findViewById(R.id.buttona);
         b = (Button) findViewById(R.id.buttonb);
         c = (Button) findViewById(R.id.buttonc);
         d = (Button) findViewById(R.id.buttond);
         e = (Button) findViewById(R.id.buttone);
-
+        fetch = (Button) findViewById(R.id.bFetch);
         a.setOnClickListener(this);
         b.setOnClickListener(this);
         c.setOnClickListener(this);
         d.setOnClickListener(this);
         e.setOnClickListener(this);
+        toggle.setOnClickListener(this);
+        fetch.setOnClickListener(this);
+        Intent intent = getIntent();
+        session =  extras.getString("session");
+        name = extras.getString("name");
 
     }
 
@@ -92,7 +96,49 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
                 buttonPressed = 5;
                 new RequestTask().execute();
                 break;
+            case R.id.bFetch:
+                buttonPressed = 6;
+                new RequestTask().execute();
+                break;
+            case R.id.bRadio:
+                toggle.toggle();
+                if(toggle.getText() == "Presentation"){
+                    toggle.setText("Mobile");
+                }
+                else{
+                    toggle.setText("Presentation");
+                }
         }
+    }
+
+    public void onBackPressed()
+    {
+        backButtonHandler();
+        return;
+    }
+
+    public void backButtonHandler()
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(AnsSession.this);
+        LayoutInflater inflater = AnsSession.this.getLayoutInflater();
+
+        alertDialog.setTitle("Leaving?");
+        alertDialog.setView(inflater.inflate(R.layout.leave2, null));
+
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(AnsSession.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+        alertDialog.setNegativeButton("No",	new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alertDialog.show();
     }
 
 
@@ -101,14 +147,11 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
         @Override
         protected Object doInBackground(Object... params) {
             HashMap values = new HashMap();
-
             values.put(new String("requestType"), "client");
             values.put(new String("session"), session);
+            values.put(new String("name"), name);
 
             switch (buttonPressed) {
-                case 0:
-                    makeGetRequest();
-                    break;
                 case 1:
                     values.put(new String("answer"), "A");
                     break;
@@ -124,18 +167,20 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
                 case 5:
                     values.put(new String("answer"), "E");
                     break;
+                case 6:
+                    values.put(new String("answer"), "F");
+                    break;
             }
             makePostRequest(values);
             return null;
         }
 
         protected Object makePostRequest(Map params) {
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://6d6ba094.ngrok.com");
+            HttpClient client = new DefaultHttpClient();
+            HttpPost post = new HttpPost("http://6d6ba094.ngrok.com");
 
             JSONObject holder = new JSONObject(params);
 
-            //passes the results to a string builder/entity
             StringEntity se = null;
             try {
                 se = new StringEntity(holder.toString());
@@ -143,81 +188,56 @@ public class AnsSession extends ActionBarActivity implements View.OnClickListene
                 e.printStackTrace();
             }
 
-            //sets the post request as the resulting string
-            httpPost.setEntity(se);
-            //sets a request header so the page receving the request
-            //will know what to do with it
-            httpPost.setHeader("Accept", "application/json");
-            httpPost.setHeader("Content-type", "application/json");
+            post.setEntity(se);
+            post.setHeader("Accept", "application/json");
+            post.setHeader("Content-type", "application/json");
 
             InputStream inputStream = null;
-            String responseString = "";
+            String result = "";
             try {
-                HttpResponse httpResponse = httpClient.execute(httpPost);
+                HttpResponse httpResponse = client.execute(post);
                 inputStream = httpResponse.getEntity().getContent();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
                 StringBuilder sb = new StringBuilder();
 
                 String line = null;
-                while ((line = reader.readLine()) != null)
-                {
-                    sb.append(line + "\n");
-                }
-
-                responseString = sb.toString();
-                Log.d("Http Post Response:", responseString);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        private Object makeGetRequest()
-        {
-            HttpClient client = new DefaultHttpClient();
-            HttpGet get = new HttpGet("http://6d6ba094.ngrok.com");
-            String result = "";
-            try {
-                HttpResponse response = client.execute(get);
-                InputStream inputStream = response.getEntity().getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
-                StringBuilder sb = new StringBuilder();
-
-                String line = null;
-                while ((line = reader.readLine()) != null)
-                {
+                while ((line = reader.readLine()) != null) {
                     sb.append(line + "\n");
                 }
 
                 result = sb.toString();
+                Log.d("Http Post Response:", result);
                 JSONObject rson = new JSONObject(result);
                 String question = rson.optString("question");
                 JSONArray answers = rson.optJSONArray("answers");
-                if ((question != null) && (answers != null))
-                {
-                    Question = question;
+                if ((question != null) && (answers != null) && (toggle.getText() == "Mobile")) {
+                    display.setText(question);
                     for (int i = 0; i < answers.length(); i++)
-                        Answers[i] = answers.getString(i);
+                        switch (i) {
+                            case 0:
+                                a.setText(answers.getString(i));
+                                break;
+                            case 1:
+                                b.setText(answers.getString(i));
+                                break;
+                            case 2:
+                                c.setText(answers.getString(i));
+                                break;
+                            case 3:
+                                d.setText(answers.getString(i));
+                                break;
+                            case 4:
+                                e.setText(answers.getString(i));
+                                break;
+                        }
                 }
-
-                for (int i = 0; i < Answers.length; i++)
-                {
-                    TextView tmp = myArr.get(i);
-                    tmp.setText(Answers[i]);
-                }
-
-                return true;
-
-
-
-            } catch (ClientProtocolException e) {
 
             } catch (IOException e) {
-
+                e.printStackTrace();
             } catch (JSONException e) {
-
+                e.printStackTrace();
             }
-            return false;
+            return null;
         }
 
         @Override

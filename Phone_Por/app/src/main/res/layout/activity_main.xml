@@ -22,4 +22,32 @@
         android:id="@+id/editTextsess"
         android:layout_above="@+id/buttonconnect"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:hint="Enter Your Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextname"
+        android:layout_above="@+id/editTextsess"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:id="@+id/bExit"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/buttonconnect" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About Us"
+        android:id="@+id/bAbout"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/bExit"/>
+
+
 </RelativeLayout>

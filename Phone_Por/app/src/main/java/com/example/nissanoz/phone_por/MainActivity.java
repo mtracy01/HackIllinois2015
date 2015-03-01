@@ -13,8 +13,8 @@ import android.widget.EditText;
 
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 
-    Button connect;
-    EditText sess;
+    Button connect, exit, about;
+    EditText sess, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +22,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         setContentView(R.layout.activity_main);
 
         connect = (Button) findViewById(R.id.buttonconnect);
+        about = (Button) findViewById(R.id.bAbout);
         sess = (EditText) findViewById(R.id.editTextsess);
+        name = (EditText) findViewById(R.id.editTextname);
 
         connect.setOnClickListener(this);
+        exit.setOnClickListener(this);
     }
 
     public void onBackPressed()
@@ -58,10 +61,20 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.buttonconnect) {
-            Intent i = new Intent(MainActivity.this, AnsSession.class);
-            i.putExtra("SessionName",sess.getText().toString());
-            startActivity(i);
+        switch(v.getId())
+        {
+            case R.id.buttonconnect:
+                Intent i = new Intent(MainActivity.this, AnsSession.class);
+                i.putExtra("SessionName",sess.getText().toString());
+                i.putExtra("Name", name.getText().toString());
+                startActivity(i);
+                break;
+            case R.id.bExit:
+                finish();
+                break;
+            case R.id.bAbout:
+                Intent i2 = new Intent(MainActivity.this, AnsSession.class);
+                break;
         }
     }
 }
